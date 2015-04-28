@@ -32,4 +32,4 @@ CREATE VIEW view_employee_dep AS
   WHERE e.DEPARTMENT_ID=d.DEPARTMENT_ID;
 
 SELECT * from view_employee_dep;
-/*10*/
+
