@@ -40,7 +40,7 @@ public class ColumnInfo {
         return isId;
     }
 
-    public void setIsId(boolean isId) {
+    public void setId(boolean isId) {
         this.isId = isId;
     }
 
@@ -51,4 +51,6 @@ public class ColumnInfo {
     public void setValue(Object value) {
         this.value = value;
     }
+
+
 }

@@ -7,8 +7,8 @@ import ro.teamnet.zth.api.annotations.Table;
 /**
  * Created by MN on 4/28/2015.
  */
-@Table(name="Location")
-public class Loacation {
+@Table(name="Locations")
+public class Location {
     @Id(name="LOCATION_ID")
     private int id;
     @Column(name="street_adress")

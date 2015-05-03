@@ -7,6 +7,15 @@ public class Condition {
     private String columnName;
     private Object value;
 
+    public Condition(String cName, Object value) {
+        this.columnName = cName;
+        this.value = value;
+    }
+
+    public Condition() {
+
+    }
+
     public Object getValue() {
         return value;
     }
