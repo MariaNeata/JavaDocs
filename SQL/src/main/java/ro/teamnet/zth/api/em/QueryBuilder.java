@@ -20,6 +20,7 @@ public class QueryBuilder {
     public QueryBuilder() {
 
     }
+
     public QueryBuilder addCondition(Condition condition) {
         conditions.add(condition);
         return this;
@@ -44,11 +45,11 @@ public class QueryBuilder {
         StringBuilder select = new StringBuilder();
         select.append("Select ");
         for (ColumnInfo i : queryColumns) {
-            select.append(tableName+"."+i.getDbName());
+            select.append(tableName + "." + i.getDbName());
             select.append(", ");
         }
         select.delete(select.lastIndexOf(","), (select.lastIndexOf(",") + 1));
-        select.append(" from "+tableName);
+        select.append(" from " + tableName);
 
         select.append(" where ");
         for (Condition i : conditions) {
@@ -58,6 +59,7 @@ public class QueryBuilder {
         select.delete(select.lastIndexOf("and"), (select.lastIndexOf("and") + 4));
         return select.toString();
     }
+
 
     private String createDeleteQuery() {
         StringBuilder delete = new StringBuilder();
@@ -95,19 +97,19 @@ public class QueryBuilder {
 
     private String createInsertQuery() {
         StringBuilder insert = new StringBuilder();
-        insert.append("Insert into " + tableName + " (");
+        insert.append("Insert into ").append(tableName).append(" (");
         for (ColumnInfo i : queryColumns) {
-            insert.append(i.getColumnName() + ", ");
+            insert.append(i.getColumnName()).append(", ");
         }
         insert.delete(insert.lastIndexOf(","), (insert.lastIndexOf(",") + 1));
         insert.append(") values ");
         for (ColumnInfo i : queryColumns) {
-            insert.append(i.getValue() + ", ");
+            insert.append(i.getValue()).append(", ");
         }
         insert.delete(insert.lastIndexOf(","), (insert.lastIndexOf(",") + 1));
         return insert.toString();
-
     }
+
 
     public String createQuery() {
         String s = null;
@@ -117,6 +119,17 @@ public class QueryBuilder {
         if (this.queryType.equals(QueryType.INSERT)) s = createInsertQuery();
         return s;
     }
+
+  /*  private String getValueForQuery(Object value) {
+        if (value == null){
+            return null;
+        }
+        if (value instanceof String){
+            return "'" + value + "'";
+        } else {
+            return value.toString();
+        }
+    }*/
 }
 
 

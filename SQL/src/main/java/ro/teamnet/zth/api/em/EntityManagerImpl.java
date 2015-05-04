@@ -71,7 +71,7 @@ public class EntityManagerImpl implements EntityManager {
         //-	get table name;
         String tableName = EntityUtils.getTableName(entityClass);
         //-	get table columns;
-        ArrayList<ColumnInfo> tableColumns = EntityUtils.getColumns(entityClass);
+        List<ColumnInfo> tableColumns = EntityUtils.getColumns(entityClass);
         //-	create a QueryBuilder object  where you set the name of table, query type and columns;
         QueryBuilder QBobj = new QueryBuilder();
         QBobj.addQueryColumns(tableColumns);
@@ -82,14 +82,10 @@ public class EntityManagerImpl implements EntityManager {
         String query = QBobj.createQuery();
         // -create a Statement object and execute the query;
         Statement statement = null;
-        try {
-            statement = con.createStatement();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
         List<T> list = new ArrayList<>();
 
-        try {
+        try { statement = con.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             T t = entityClass.newInstance();
             while (resultSet.next()) {
@@ -117,7 +113,7 @@ public class EntityManagerImpl implements EntityManager {
         //-	get table name;
         String tableName = EntityUtils.getTableName(entity.getClass());
         //-	get table columns;
-        ArrayList<ColumnInfo> tableColumns = EntityUtils.getColumns(entity.getClass());
+        List<ColumnInfo> tableColumns = EntityUtils.getColumns(entity.getClass());
         //-	set column value with the value from entity;
         for (ColumnInfo column : tableColumns) {
             try {
@@ -139,19 +135,16 @@ public class EntityManagerImpl implements EntityManager {
         //-	call createQuery() method from QueryBuilder.java;
         String query = QBobj.createQuery();
         Statement statement = null;
+
         try {
             statement = con.createStatement();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
             statement.executeUpdate(query);
             ResultSet resultSet = null;
             resultSet = statement.executeQuery("SELECT last_inserted_id()");
             resultSet.next();
             lastId = resultSet.getInt(1);
             resultSet.close();
-            return (T) (findById(entity.getClass(), lastId));
+            return (T) findById(entity.getClass(), lastId);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -166,7 +159,7 @@ public class EntityManagerImpl implements EntityManager {
         //-	get table name;
         String tableName = EntityUtils.getTableName(entity.getClass());
         //-	get table columns;
-        ArrayList<ColumnInfo> tableColumns = EntityUtils.getColumns(entity.getClass());
+        List<ColumnInfo> tableColumns = EntityUtils.getColumns(entity.getClass());
         //-	set column value with the value from entity;
         for (ColumnInfo column : tableColumns) {
             try {
@@ -191,13 +184,12 @@ public class EntityManagerImpl implements EntityManager {
         QBobj.setQueryType(qt);
         //-	call createQuery() method from QueryBuilder.java;
         String query = QBobj.createQuery();
-        Statement statement = null;
-        try {
-            statement = con.createStatement();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
+
+
+
+
+
+        try {Statement   statement = con.createStatement();
             statement.executeUpdate(query);
             return entity;
         } catch (SQLException e) {
@@ -213,7 +205,7 @@ public class EntityManagerImpl implements EntityManager {
         //-	get table name;
         String tableName = EntityUtils.getTableName(entity.getClass());
         //-	get table columns;
-        ArrayList<ColumnInfo> tableColumns = EntityUtils.getColumns(entity.getClass());
+        List<ColumnInfo> tableColumns = EntityUtils.getColumns(entity.getClass());
         //-	set column value with the value from entity;
         for (ColumnInfo column : tableColumns) {
             try {

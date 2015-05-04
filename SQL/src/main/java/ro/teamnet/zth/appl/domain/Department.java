@@ -39,4 +39,26 @@ public class Department {
     public void setId(int id) {
         this.id = id;
     }
+    @Override
+    public String toString() {
+        return "Department{" +
+                "id=" + id +
+                ", departmentName='" + departmentName + '\'' +
+                ", locations=" + location +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Department that = (Department) o;
+
+        if (!departmentName.equals(that.departmentName)) return false;
+        if (!(id == that.id)) return false;
+
+        return true;
+    }
 }
+
