@@ -3,15 +3,16 @@ package ro.teamnet.z2h;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
-import ro.teamnet.z2h.dao.DepartmentDao;
+import ro.teamnet.zth.appl.dao.DepartmentDao;
 import ro.teamnet.z2h.dao.EmployeeDao;
-import ro.teamnet.z2h.dao.EmployeeViewDao;
+import ro.teamnet.zth.dao.EmployeeViewDao;
 import ro.teamnet.z2h.dao.JobDao;
 import ro.teamnet.z2h.domain.Department;
 import ro.teamnet.z2h.domain.Employee;
 import ro.teamnet.z2h.domain.Job;
 import ro.teamnet.z2h.utils.DatabaseManager;
 import ro.teamnet.z2h.views.EmployeeView;
+import ro.teamnet.zth.api.database.DBManager;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -23,14 +24,21 @@ import java.util.HashMap;
  * Hello world!
  */
 public class App {
-    private static final String USERNAME = "ZTH_24";
-    private static final String PASSWORD = "passw0rd";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "";
 
     public static void main(String[] args) {
         System.out.println("Starting ZTH JDBC Tutorial ");
 
-        Connection con = DatabaseManager.getConnection(USERNAME, PASSWORD);
-        DatabaseManager.checkConnection(con);
+        Connection con = null;
+        try {
+            con = DBManager.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        DBManager.checkConnection(con);
 
         ObjectMapper mapper = new ObjectMapper();
 
