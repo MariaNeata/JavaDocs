@@ -27,6 +27,7 @@ public class HttpSessionZTH extends HttpServlet {
         username = req.getParameter("username");
         password=req.getParameter("password");
         Cookie[] x = req.getCookies();
+      
 
         if(defaultUser.equals(username)&& (defaultPass.equals(password))){
             resp.getWriter().write("Welcome back! \n"+"Username:"+username);
