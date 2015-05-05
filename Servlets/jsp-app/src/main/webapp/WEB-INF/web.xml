@@ -7,7 +7,7 @@
     <servlet>
         <servlet-name>HelloWorld</servlet-name>
         <description>HelloWorld Servlet</description>
-        <servlet-class>ro.teamnet.z2h.web.HelloWorldServlet</servlet-class>
+        <servlet-class>ro.teamnet.zth.web.HelloWorldServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HelloWorld</servlet-name>
@@ -17,7 +17,7 @@
     <servlet>
         <servlet-name>ZeroToHero</servlet-name>
         <description>ZeroToHero Servlet</description>
-        <servlet-class>ro.teamnet.z2h.web.ZeroToHeroServlet</servlet-class>
+        <servlet-class>ro.teamnet.zth.web.ZeroToHeroServlet</servlet-class>
     </servlet>
     
     <servlet-mapping>
