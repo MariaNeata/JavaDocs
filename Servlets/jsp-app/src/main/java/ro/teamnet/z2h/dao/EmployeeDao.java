@@ -149,5 +149,10 @@ public class EmployeeDao {
 
         return con;
     }
-	
+
+    public void updateEmployee(Employee employee, Connection con) {
+    }
+
+    public void saveEmployee(Employee employee, Connection con) {
+    }
 }

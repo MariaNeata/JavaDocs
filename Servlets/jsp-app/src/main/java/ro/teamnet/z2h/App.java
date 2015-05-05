@@ -77,17 +77,13 @@ public class App {
         }
 
         EmployeeDao employeeDao = new EmployeeDao();
-        try {
-            ArrayList<Employee> employees = employeeDao.getAllEmployees(con);
-            System.out.println("System retrieved " + employees.size() + " employees");
-            Employee employee = employeeDao.getEmployeeById(con, 101L);
-            System.out.println("System retrieved Mr/Mrs " + employee.getFirstName() + " " + employee.getLastName() + " from database");
-            employeeDao.updateEmployee(employee, con);
-            employeeDao.saveEmployee(employee, con);
+        ArrayList<Employee> employees = employeeDao.getAllEmployees(con);
+        System.out.println("System retrieved " + employees.size() + " employees");
+        Employee employee = employeeDao.getEmployeeById(con, 101L);
+        System.out.println("System retrieved Mr/Mrs " + employee.getFirstName() + " " + employee.getLastName() + " from database");
+        employeeDao.updateEmployee(employee, con);
+        employeeDao.saveEmployee(employee, con);
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         EmployeeViewDao employeeViewDao = new EmployeeViewDao();
 
         EmployeeView employeeView = null;
